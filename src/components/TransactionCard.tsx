@@ -27,8 +27,8 @@ export function TransactionCard({
   // 🔥 Amount color
   const amountColor =
     transaction.status === "Completed"
-      ? "text-emerald-300"
-      : "text-white";
+      ? "text-white"
+      : "text-slate-100";
 
   return (
     <Pressable
