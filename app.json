@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "GarudaX",
+    "slug": "garudax-mobile",
+    "scheme": "garudax",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#061428"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.demo.garudax"
+    },
+    "android": {
+      "package": "com.demo.garudax",
+      "adaptiveIcon": {
+        "backgroundColor": "#061428"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

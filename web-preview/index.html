@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GarudaX - Global Money Transfers</title>
+    <style>
+      :root {
+        --navy: #061428;
+        --navy-2: #0a1b34;
+        --navy-3: #102a4c;
+        --gold: #d7a83f;
+        --gold-2: #f0c96a;
+        --white: #f8fafc;
+        --muted: #94a3b8;
+        --green: #62d394;
+        --red: #ff6b6b;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        color: var(--white);
+        background:
+          radial-gradient(circle at 10% 10%, rgba(215, 168, 63, 0.18), transparent 26rem),
+          radial-gradient(circle at 90% 0%, rgba(98, 211, 148, 0.11), transparent 22rem),
+          linear-gradient(135deg, #061428 0%, #07182e 42%, #0c203d 100%);
+        min-height: 100vh;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 28px 0 40px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 28px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .mark {
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        color: var(--navy);
+        font-size: 28px;
+        font-weight: 950;
+        background: linear-gradient(145deg, #ffe3a1, #d7a83f 60%, #8a6217);
+        box-shadow: 0 18px 48px rgba(215, 168, 63, 0.24);
+      }
+
+      h1, h2, h3, p { margin: 0; }
+
+      .brand h1 { font-size: clamp(26px, 3vw, 36px); letter-spacing: 0; }
+      .brand p { color: var(--muted); margin-top: 3px; font-size: 14px; }
+
+      .pill {
+        border: 1px solid rgba(240, 201, 106, 0.28);
+        background: rgba(215, 168, 63, 0.11);
+        color: #ffe3a1;
+        border-radius: 999px;
+        padding: 9px 14px;
+        font-size: 13px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) 390px;
+        gap: 24px;
+        align-items: start;
+      }
+
+      .hero {
+        min-height: 560px;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 28px;
+        padding: clamp(24px, 5vw, 54px);
+        background:
+          linear-gradient(145deg, rgba(16, 42, 76, 0.96), rgba(6, 20, 40, 0.92)),
+          repeating-linear-gradient(135deg, rgba(240,201,106,0.05) 0 1px, transparent 1px 16px);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .hero:after {
+        content: "GARUDAX";
+        position: absolute;
+        right: -22px;
+        bottom: 24px;
+        font-size: clamp(64px, 10vw, 142px);
+        line-height: 1;
+        color: rgba(255,255,255,0.035);
+        font-weight: 950;
+      }
+
+      .hero-content { position: relative; z-index: 1; max-width: 720px; }
+      .hero h2 { font-size: clamp(40px, 6vw, 74px); line-height: 0.95; letter-spacing: 0; max-width: 760px; }
+      .hero p { margin-top: 18px; color: #cbd5e1; font-size: clamp(16px, 2vw, 20px); line-height: 1.6; max-width: 650px; }
+
+      .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+
+      button {
+        border: 0;
+        min-height: 50px;
+        border-radius: 14px;
+        padding: 0 18px;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      .primary { background: var(--gold); color: var(--navy); }
+      .secondary { background: rgba(255,255,255,0.07); color: white; border: 1px solid rgba(255,255,255,0.12); }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 38px;
+      }
+
+      .stat, .card {
+        border: 1px solid rgba(255,255,255,0.1);
+        background: rgba(10, 27, 52, 0.76);
+        border-radius: 18px;
+        padding: 18px;
+      }
+
+      .stat strong { display: block; font-size: 26px; color: var(--gold-2); }
+      .stat span { display: block; margin-top: 6px; color: var(--muted); font-size: 13px; }
+
+      .phone {
+        border: 1px solid rgba(255,255,255,0.14);
+        border-radius: 38px;
+        padding: 12px;
+        background: linear-gradient(160deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
+        box-shadow: 0 28px 90px rgba(0,0,0,0.42);
+        position: sticky;
+        top: 24px;
+      }
+
+      .phone-screen {
+        height: 780px;
+        border-radius: 30px;
+        background: var(--navy);
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.08);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .mobile-top {
+        padding: 22px 20px 14px;
+        background: linear-gradient(180deg, #102a4c, #061428);
+      }
+
+      .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+      .muted { color: var(--muted); }
+      .mobile-top h3 { font-size: 24px; margin-top: 3px; }
+      .bell { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; background: rgba(255,255,255,0.08); color: var(--gold-2); }
+
+      .balance {
+        margin: 16px 20px;
+        padding: 18px;
+        border-radius: 22px;
+        background: linear-gradient(145deg, rgba(215,168,63,0.23), rgba(16,42,76,0.98));
+        border: 1px solid rgba(240,201,106,0.26);
+      }
+
+      .balance strong { display: block; margin-top: 8px; font-size: 32px; }
+
+      .quick { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+      .quick button { min-height: 44px; border-radius: 12px; }
+
+      .mobile-scroll { overflow: auto; padding: 0 20px 18px; }
+
+      .section-title { font-size: 16px; font-weight: 950; margin: 8px 0 12px; }
+
+      .wallet {
+        display: grid;
+        grid-template-columns: 46px 1fr auto;
+        gap: 12px;
+        align-items: center;
+        padding: 14px;
+        border-radius: 18px;
+        background: #0a1b34;
+        border: 1px solid rgba(255,255,255,0.09);
+        margin-bottom: 10px;
+      }
+
+      .flag { width: 46px; height: 46px; border-radius: 14px; background: rgba(240,201,106,0.13); display: grid; place-items: center; color: var(--gold-2); font-weight: 950; }
+      .wallet strong, .tx strong { display: block; }
+      .wallet small, .tx small { color: var(--muted); }
+
+      .tx {
+        padding: 14px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.045);
+        border: 1px solid rgba(255,255,255,0.08);
+        margin-bottom: 10px;
+      }
+
+      .badge {
+        border-radius: 999px;
+        padding: 5px 9px;
+        font-size: 11px;
+        font-weight: 900;
+      }
+
+      .ok { color: #bdf8d1; background: rgba(98, 211, 148, 0.16); }
+      .warn { color: #ffe3a1; background: rgba(215, 168, 63, 0.16); }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      .card h3 { font-size: 18px; margin-bottom: 8px; }
+      .card p { color: #cbd5e1; line-height: 1.55; font-size: 14px; }
+
+      .quote {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .fee-row {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        padding: 11px 0;
+        color: #cbd5e1;
+      }
+
+      .fee-row strong { color: white; }
+
+      footer {
+        margin-top: 28px;
+        color: #cbd5e1;
+        border: 1px solid rgba(240,201,106,0.24);
+        background: rgba(215,168,63,0.1);
+        border-radius: 18px;
+        padding: 18px;
+        line-height: 1.55;
+        font-size: 13px;
+      }
+
+      @media (max-width: 980px) {
+        .layout { grid-template-columns: 1fr; }
+        .phone { position: static; max-width: 430px; margin: 0 auto; }
+        .features, .quote { grid-template-columns: 1fr; }
+      }
+
+      @media (max-width: 640px) {
+        header { align-items: flex-start; flex-direction: column; }
+        .hero { min-height: auto; }
+        .stats { grid-template-columns: 1fr; }
+        .phone-screen { height: 720px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <div class="brand">
+          <div class="mark">G</div>
+          <div>
+            <h1>GarudaX</h1>
+            <p>Fast, secure, transparent global money transfers.</p>
+          </div>
+        </div>
+        <div class="pill">Sandbox MVP - no real money movement</div>
+      </header>
+
+      <section class="layout">
+        <div>
+          <div class="hero">
+            <div class="hero-content">
+              <div class="pill" style="display:inline-flex">Premium Indian-global fintech identity</div>
+              <h2 style="margin-top:20px">Move money globally with clarity before every transfer.</h2>
+              <p>GarudaX combines multi-currency wallets, transparent FX quotes, beneficiary controls, KYC/AML placeholders, risk routing, transfer tracking, and audit-ready flows in one polished mobile-first experience.</p>
+              <div class="actions">
+                <button class="primary" onclick="document.getElementById('phone').scrollIntoView({behavior:'smooth'})">View mobile dashboard</button>
+                <button class="secondary" onclick="document.getElementById('quote').scrollIntoView({behavior:'smooth'})">Review quote flow</button>
+              </div>
+              <div class="stats">
+                <div class="stat"><strong>14</strong><span>Supported currencies</span></div>
+                <div class="stat"><strong>5,000 USD</strong><span>Manual review threshold</span></div>
+                <div class="stat"><strong>KYC/AML</strong><span>Compliance placeholders</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="features">
+            <div class="card"><h3>Transparent rates</h3><p>Show exchange rate, FX markup, transfer fee, tax/GST, total payable, and recipient amount before confirmation.</p></div>
+            <div class="card"><h3>Trust controls</h3><p>Secure token storage, masked account numbers, KYC status, source-of-funds capture, and audit log placeholders.</p></div>
+            <div class="card"><h3>Global wallet</h3><p>USD, EUR, GBP, INR, AED, SGD, AUD, CAD, JPY, CHF, SAR, QAR, MYR, and THB support.</p></div>
+          </div>
+
+          <div class="quote" id="quote">
+            <div class="card">
+              <h3>Send USD to INR</h3>
+              <div class="fee-row"><span>Exchange rate</span><strong>1 USD = 83.1200 INR</strong></div>
+              <div class="fee-row"><span>FX markup</span><strong>$4.00</strong></div>
+              <div class="fee-row"><span>Transfer fee</span><strong>$8.00</strong></div>
+              <div class="fee-row"><span>Tax/GST</span><strong>$1.44</strong></div>
+              <div class="fee-row"><span>Total payable</span><strong>$1,009.44</strong></div>
+              <div class="fee-row"><span>Recipient gets</span><strong>₹82,787.52</strong></div>
+            </div>
+            <div class="card">
+              <h3>Compliance route</h3>
+              <p><span class="badge ok">Low Risk</span></p>
+              <p style="margin-top:14px">Transfers under the equivalent of 5,000 USD go to direct processing in this sandbox. Higher-value transfers are routed to compliance review or admin approval.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="phone" id="phone">
+          <div class="phone-screen">
+            <div class="mobile-top">
+              <div class="row">
+                <div>
+                  <p class="muted">Namaste,</p>
+                  <h3>Arjun Rao</h3>
+                </div>
+                <div class="bell">!</div>
+              </div>
+              <div class="balance">
+                <p class="muted">Total wallet balance equivalent</p>
+                <strong>₹6,74,948.00</strong>
+                <div class="quick">
+                  <button class="primary">Send</button>
+                  <button class="secondary">Convert</button>
+                </div>
+              </div>
+            </div>
+            <div class="mobile-scroll">
+              <p class="section-title">Compliance status</p>
+              <div class="tx row">
+                <div>
+                  <strong>KYC verified</strong>
+                  <small>AML checks enabled for transfers</small>
+                </div>
+                <span class="badge ok">Verified</span>
+              </div>
+
+              <p class="section-title">Currency wallets</p>
+              <div class="wallet"><div class="flag">IN</div><div><strong>INR wallet</strong><small>Pending ₹12,000.00</small></div><strong>₹2,50,000</strong></div>
+              <div class="wallet"><div class="flag">US</div><div><strong>USD wallet</strong><small>Pending $250.00</small></div><strong>$3,200</strong></div>
+              <div class="wallet"><div class="flag">EU</div><div><strong>EUR wallet</strong><small>Pending €0.00</small></div><strong>€1,500</strong></div>
+              <div class="wallet"><div class="flag">AE</div><div><strong>AED wallet</strong><small>Pending AED 300.00</small></div><strong>AED 4,000</strong></div>
+
+              <p class="section-title">Exchange ticker</p>
+              <div class="tx"><strong>USD/INR 83.12 | EUR/INR 90.04 | AED/INR 22.64</strong><small> Indicative sandbox rates</small></div>
+
+              <p class="section-title">Recent transactions</p>
+              <div class="tx row"><div><strong>Priya Rao</strong><small>USD to INR - GX-USDINR-1001</small></div><span class="badge ok">Completed</span></div>
+              <div class="tx row"><div><strong>Ahmed Khan</strong><small>INR to AED - GX-INRAED-1002</small></div><span class="badge warn">Processing</span></div>
+              <div class="tx row"><div><strong>Priya Rao</strong><small>EUR to INR - GX-EURINR-1003</small></div><span class="badge warn">Review</span></div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <footer>
+        GarudaX is a demo fintech platform built for educational and product demonstration purposes. Real international money transfer services require licenses, banking partners, AML/KYC compliance, regulatory approvals, and jurisdiction-specific legal review.
+      </footer>
+    </main>
+  </body>
+</html>
