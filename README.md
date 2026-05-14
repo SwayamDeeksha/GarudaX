@@ -22,7 +22,6 @@ Tagline: Fast, secure, transparent global money transfers.
 - React Native with Expo
 - TypeScript
 - Expo Router
-- NativeWind / Tailwind styling
 - Zustand
 - React Hook Form + Zod
 - Axios
