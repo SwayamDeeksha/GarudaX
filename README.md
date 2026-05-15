@@ -1,6 +1,6 @@
 # GarudaX Mobile
 
-GarudaX is a demo/MVP Expo React Native app for an international multi-currency money transfer product.
+GarudaX is a demo/MVP Expo React Native Mobile Application for an international multi-currency money transfer product.
 
 Tagline: Fast, secure, transparent global money transfers.
 
