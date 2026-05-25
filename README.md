@@ -4,6 +4,15 @@ GarudaX is a demo/MVP Expo React Native Mobile Application for an international 
 
 Tagline: Fast, secure, transparent global money transfers.
 
+## App Screenshots
+
+![Login](./Screenshots/Login.jpeg)  
+![Home](./Screenshots/Home.jpeg)  
+![Wallet](./Screenshots/Wallet.jpeg)  
+![Send Money](./Screenshots/Send.jpeg)  
+![Transactions](./Screenshots/Transactions.jpeg)  
+![Converter](./Screenshots/Converter.jpeg)
+
 ## Features
 
 - Splash, onboarding, login, register, forgot password, OTP, and biometric placeholder flows
